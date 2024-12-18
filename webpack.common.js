@@ -8,6 +8,7 @@ module.exports = {
     entry: {
         popup: path.resolve("./src/popup/index.jsx"),
         background: path.resolve("./src/background/background.js"),
+        content:path.resolve("./src/content/content.js")
     },
     module: {
         rules: [

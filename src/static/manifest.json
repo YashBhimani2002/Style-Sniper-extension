@@ -13,5 +13,10 @@
         "16":"assets/icons/styleSniper-16.png"
     },
     "background":{ "service_worker": "background.js" },
-    "permissions": ["storage","notifications"]
+    "permissions": ["storage","notifications","tabs","scripting","activeTab"],
+    "content_scripts":[{
+        "matches":["<all_urls>"],
+        "js":["content.js"]
+    }],
+    "host_permissions": ["<all_urls>"]
 }

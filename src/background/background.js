@@ -29,6 +29,12 @@ function storeToggleStatus(status) {
         'toggleStatus': status
     });
     sendNotificationToggleExtension('Style Sniper', 'Extension Activated Successfully',`styleSniperNotificationOfActivated${Math.random()}`);
+    chrome.tabs.query({active: true, currentWindow: true}, function(tab) {
+       chrome.scripting.executeScript({
+           target: {tabId: tab[0].id},
+           files: ['content.js']
+       })
+    })
 }
 
 /**
@@ -38,6 +44,7 @@ function storeToggleStatus(status) {
 function clearToggleStatusFromLocalStorage() {
     chrome.storage.local.clear();
     sendNotificationToggleExtension('Style Sniper', 'Extension Deactivated Successfully',`styleSniperNotificationOfDeactivated${Math.random()}`);
+    document.removeEventListener("click", window.customClickListener);
 }
 
 /**
