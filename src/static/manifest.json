@@ -1,0 +1,17 @@
+{
+    "manifest_version": 3,
+    "name": "Style Sniper",
+    "description": "This extension allows users to hover over or click on any element on a webpage to fetch its DOM properties, styles, and text content, and then manipulate some basic styles dynamically.",
+    "version": "1.0.0",
+    "action":{
+        "default_popup":"popup.html"
+    },
+    "icons":{
+        "128":"assets/icons/styleSniper-128.png",
+        "48":"assets/icons/styleSniper-48.png",
+        "32":"assets/icons/styleSniper-32.png",
+        "16":"assets/icons/styleSniper-16.png"
+    },
+    "background":{ "service_worker": "background.js" },
+    "permissions": ["storage","notifications"]
+}
