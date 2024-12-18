@@ -1,7 +1,26 @@
 import React, { useEffect, useState } from "react";
 import "../css/main.css";
+/**
+ * Popup component for the Style Sniper extension.
+ * 
+ * This component renders a React functional component that displays the toggle status
+ * of the Style Sniper extension. It retrieves the toggle status from Chrome's local
+ * storage and updates the UI accordingly. The user can enable or disable the extension
+ * using a toggle switch. Changes to the toggle state are communicated to the background
+ * script via Chrome's messaging API.
+ * 
+ * @returns {JSX.Element} A JSX element representing the popup UI.
+ */
+
 const Popup = () => {
   const [toggleStatus, setToggleStatus] = useState(false);
+/**
+ * Retrieves the toggle status of the Style Sniper extension from Chrome's local
+ * storage and updates the popup component's state accordingly.
+ *
+ * @function
+ * @returns {void}
+ */
   const getToggleStatus = ()=>{
     chrome.storage.local.get('toggleStatus', (response) => {
         console.log(response,"response");
@@ -13,6 +32,14 @@ const Popup = () => {
   useEffect(() => {
     getToggleStatus();
 }, []);
+/**
+ * Handles a toggle event from the UI, sending a message to the background
+ * script to either store or clear the toggle status in local storage. The
+ * component's state is also updated to reflect the new toggle status.
+ *
+ * @param {boolean} status - The new toggle status of the extension.
+ * @returns {void}
+ */
   const handleToggle = (status) => {
     if (status) {
       chrome.runtime.sendMessage({ action: "store", status: true });
